@@ -261,6 +261,8 @@ select {
   word-wrap: normal;
 }
 
+
+
 button,
 [type="button"],
 [type="reset"],
@@ -4794,9 +4796,6 @@ input[type="button"].btn-block {
   margin-bottom: 0;
 }
 
-.card-text:last-child {
-  margin-bottom: 0;
-}
 
 .card-link:hover {
   text-decoration: none;
@@ -10279,3 +10278,54 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+/* Custom section */
+.bookspara{
+  text-align: center;
+}
+
+.titletext{
+  font-size: x-small;
+}
+
+.mybookstitle{
+  margin-top: 20px;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bookspara{
+  font-size: x-small;
+  font-family: monospace;
+}
+
+.copyright{
+  font-family: monospace;
+}
+
+.customcontainer{
+right: auto;
+left: 0;
+
+}
+
+
+#customheader{
+  font-size: smaller;
+  font-weight: bold;
+}
+
+#customauthortext{
+  font-size: smaller;
+}
+
+#customcategorytext{
+  font-size: smaller;
+}
+
+#searhbarmenu{
+  margin-top: 25px;
+  font-size: smaller;
+}

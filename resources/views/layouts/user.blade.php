@@ -41,19 +41,13 @@
     </div> <!-- /HEADER -->
     <div id="menubar">
         <!-- Menu Bar -->
-        <div class="container">
+        <div class="container d-flex">
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="menu">
-                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('authors') }}">Authors</a></li>
-                        <li><a href="{{ route('publishers') }}">Publishers</a></li>
-                        <li><a href="{{ route('categories') }}">Categories</a></li>
-                        <li><a href="{{ route('books.index') }}">Books</a></li>
-                        <li><a href="{{ route('students') }}">Reg Students</a></li>
-                        <li><a href="{{ route('book_issued') }}">Book Issue</a></li>
-                        <li><a href="{{ route('reports') }}">Reports</a></li>
-                        <li><a href="{{ route('settings') }}">Settings</a></li>
+                <ul class="menu" >
+                    <li><a href="{{ route('user.home') }}">Dashboard</a></li>
+                    <li><a href="{{ route('user.myBooks') }}">My Books</a></li>
+                       
                     </ul>
                 </div>
             </div>
@@ -67,7 +61,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <span style="font-size: x-small;"  class="font-monospace">&copy; Universitas Sultan Ageng Tirtayasa</span>
+                    <span style="font-size: x-small;" class="copyright">&copy; Universitas Sultan Ageng Tirtayasa</span>
                 </div>
             </div>
         </div>

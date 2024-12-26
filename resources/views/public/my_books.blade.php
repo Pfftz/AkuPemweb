@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.user')
 @section('content')
 <div class="container">
-    <h2 class="text-center">My Borrowed Books</h2>
+    <h2 class="mybookstitle">My Borrowed Books</h2>
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     @if($bookIssues->isEmpty())
-    <p>You have not borrowed any books.</p>
+    <p class="bookspara">You have not borrowed any books.</p>
     @else
     <table class="table">
         <thead>
