@@ -10,7 +10,7 @@
                     </div>
                     <form class="yourform" action="{{ route('login') }}" method="post">
                         @csrf
-                        <h3 class="heading">Admin Login</h3>
+                        <h3 class="heading">Login</h3>
                         <div class="form-group">
                             <label>Username</label>
                             <input type="text" name="username" class="form-control" value="{{ old('username') }}"
