@@ -31,6 +31,7 @@ class StorestudentRequest extends FormRequest
             'age' => "required",
             'phone' => "required",
             'email' => "required|email",
+            'username' => "required|unique:students,username",
         ];
     }
 }

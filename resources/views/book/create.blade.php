@@ -28,7 +28,7 @@
                         <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
                             <option value="">Select Category</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @if(old('category_id')==$category->id) selected @endif>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('category_id')
@@ -39,13 +39,13 @@
                     </div>
                     <div class="form-group">
                         <label>Author</label>
-                        <select class="form-control @error('author_id') is-invalid @enderror" name="author_id" required>
+                        <select class="form-control @error('auther_id') is-invalid @enderror" name="auther_id" required>
                             <option value="">Select Author</option>
                             @foreach ($authors as $author)
-                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                            <option value="{{ $author->id }}" @if(old('auther_id')==$author->id) selected @endif>{{ $author->name }}</option>
                             @endforeach
                         </select>
-                        @error('author_id')
+                        @error('auther_id')
                         <div class="alert alert-danger" role="alert">
                             {{ $message }}
                         </div>
@@ -56,7 +56,7 @@
                         <select class="form-control @error('publisher_id') is-invalid @enderror" name="publisher_id" required>
                             <option value="">Select Publisher</option>
                             @foreach ($publishers as $publisher)
-                            <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                            <option value="{{ $publisher->id }}" @if(old('publisher_id')==$publisher->id) selected @endif>{{ $publisher->name }}</option>
                             @endforeach
                         </select>
                         @error('publisher_id')
@@ -71,6 +71,9 @@
                         @error('cover_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        @if(old('cover_image'))
+                        <img src="{{ asset('storage/' . old('cover_image')) }}" alt="Cover Image" width="100" class="mt-2">
+                        @endif
                     </div>
                     <input type="submit" name="save" class="btn btn-danger" value="Save">
                 </form>
