@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AutherController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookIssueController;
@@ -32,6 +33,9 @@ Route::post('/', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Route::post('/Change-password', [LoginController::class, 'changePassword'])->name('change_password');
 
+// Admin Registration Routes
+Route::get('/admin/register', [AdminController::class, 'showRegisterForm'])->name('admin.register');
+Route::post('/admin/register', [AdminController::class, 'register'])->name('admin.register.submit');
 
 Route::middleware('auth')->group(function () {
     Route::get('change-password', [dashboardController::class, 'change_password_view'])->name('change_password_view');

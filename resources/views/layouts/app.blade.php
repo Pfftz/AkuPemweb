@@ -25,7 +25,11 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(auth()->check())
                             Hi, {{ auth()->user()->name }}
+                            @else
+                            <a href="{{ route('login') }}">Login</a>
+                            @endif
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{{ route('change_password_view') }}">Change Password</a>
@@ -67,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <span style="font-size: x-small;"  class="font-monospace">&copy; Universitas Sultan Ageng Tirtayasa</span>
+                    <span style="font-size: x-small;" class="font-monospace">&copy; Universitas Sultan Ageng Tirtayasa</span>
                 </div>
             </div>
         </div>
