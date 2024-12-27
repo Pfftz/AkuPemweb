@@ -13,6 +13,37 @@
                     autocomplete="off">
                     @csrf
                     <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username"
+                            value="{{ old('username') }}" required>
+                        @error('username')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                        @error('password')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                        <small class="form-text text-muted">Leave blank to keep the current password.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation">
+                        @error('password_confirmation')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                        <small class="form-text text-muted">Leave blank to keep the current password.</small>
+                    </div>
+                    <div class="form-group">
                         <label>Student Name</label>
                         <input type="text" class="form-control" placeholder="Student Name" name="name"
                             value="{{ $student->name }}" required>

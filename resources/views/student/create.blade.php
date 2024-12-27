@@ -15,20 +15,39 @@
                 <form class="yourform" action="{{ route('student.store') }}" method="post" autocomplete="off">
                     @csrf
                     <div class="form-group">
-                        <label>Student Name</label>
-                        <input type="text" class="form-control" placeholder="Student Name" name="name"
-                            value="{{ old('name') }}" required>
-                        @error('name')
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username"
+                            value="{{ old('username') }}" required>
+                        @error('username')
                         <div class="alert alert-danger" role="alert">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" name="username"
-                            value="{{ old('username') }}" required>
-                        @error('username')
+                        <label>Password</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                        @error('password')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required>
+                        @error('password_confirmation')
+                        <div class="alert alert-danger" role="alert">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input type="text" class="form-control" placeholder="Student Name" name="name"
+                            value="{{ old('name') }}" required>
+                        @error('name')
                         <div class="alert alert-danger" role="alert">
                             {{ $message }}
                         </div>
@@ -47,8 +66,8 @@
                     <div class="form-group">
                         <label>Gender</label>
                         <select name="gender" class="form-control">
-                            <option value="male" {{ $student->gender == 'male' ? 'selected' : '' }}>Male</option>
-                            <option value="female" {{ $student->gender == 'female' ? 'selected' : '' }}>Female</option>
+                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
                         </select>
                         @error('gender')
                         <div class="alert alert-danger" role="alert">

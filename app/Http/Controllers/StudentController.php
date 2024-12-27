@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\student;
+use App\Models\User;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -36,11 +38,22 @@ class StudentController extends Controller
      * @param  \App\Http\Requests\StorestudentRequest  $request
      * @return \Illuminate\Http\Response
      */
+    // Store Method
     public function store(StorestudentRequest $request)
     {
-        student::create($request->validated());
+        // Extract student-specific fields
+        $studentData = $request->only(['name', 'address', 'gender', 'class', 'age', 'phone', 'email', 'username']);
+        $student = student::create($studentData);
 
-        return redirect()->route('students');
+        // Create corresponding User
+        User::create([
+            'name' => $student->name,
+            'username' => $student->username,
+            'password' => Hash::make($request->password),
+            'role' => 'anggota',
+        ]);
+
+        return redirect()->route('students')->with('success', 'Student created successfully.');
     }
 
     /**
@@ -74,19 +87,25 @@ class StudentController extends Controller
      * @param  \App\Http\Requests\UpdatestudentRequest  $request
      * @return \Illuminate\Http\Response
      */
+    // Update Method
     public function update(UpdatestudentRequest $request, $id)
     {
-        $student = student::find($id);
-        $student->name = $request->name;
-        $student->address = $request->address;
-        $student->gender = $request->gender;
-        $student->class = $request->class;
-        $student->age = $request->age;
-        $student->phone = $request->phone;
-        $student->email = $request->email;
-        $student->save();
+        $student = student::findOrFail($id);
 
-        return redirect()->route('students');
+        // Extract student-specific fields
+        $studentData = $request->only(['name', 'address', 'gender', 'class', 'age', 'phone', 'email']);
+        $student->update($studentData);
+
+        // Update User password if provided
+        if ($request->filled('password')) {
+            $user = User::where('username', $student->username)->first();
+            if ($user) {
+                $user->password = Hash::make($request->password);
+                $user->save();
+            }
+        }
+
+        return redirect()->route('students')->with('success', 'Student updated successfully.');
     }
 
     /**
