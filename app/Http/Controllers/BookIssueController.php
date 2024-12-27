@@ -109,7 +109,23 @@ class BookIssueController extends Controller
      */
     public function destroy($id)
     {
-        book_issue::find($id)->delete();
-        return redirect()->route('book_issued');
+        // Retrieve the book_issue record
+        $bookIssue = book_issue::find($id);
+
+        if ($bookIssue) {
+            // Retrieve the associated book
+            $book = $bookIssue->book;
+
+            if ($book) {
+                // Update the book's status to 'Y' (available)
+                $book->status = 'Y';
+                $book->save();
+            }
+
+            // Delete the book_issue record
+            $bookIssue->delete();
+        }
+
+        return redirect()->route('book_issued')->with('success', 'Book issue deleted and book status updated to available.');
     }
 }

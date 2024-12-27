@@ -47,8 +47,8 @@
                     <div class="form-group">
                         <label>Gender</label>
                         <select name="gender" class="form-control">
-                            <option value="male" selected>Male</option>
-                            <option value="female">Female</option>
+                            <option value="male" {{ $student->gender == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ $student->gender == 'female' ? 'selected' : '' }}>Female</option>
                         </select>
                         @error('gender')
                         <div class="alert alert-danger" role="alert">

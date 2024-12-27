@@ -80,15 +80,22 @@ class UserController extends Controller
     public function returnBook($id)
     {
         $bookIssue = book_issue::findOrFail($id);
-        if ($bookIssue->student_id != Auth::id()) {
+
+        // Retrieve the authenticated user's associated student
+        $student = Auth::user()->student;
+
+        // Update the authorization check
+        if (!$student || $bookIssue->student_id != $student->id) {
             return redirect()->back()->with('error', 'Unauthorized action.');
         }
 
+        // Update the book issue status and return day
         $bookIssue->update([
             'issue_status' => 'Y',
             'return_day' => now(),
         ]);
 
+        // Update the book's availability status
         $bookIssue->book->update(['status' => 'Y']);
 
         return redirect()->route('user.myBooks')->with('success', 'Book returned successfully.');

@@ -2,9 +2,14 @@
 @section('content')
 <div class="container">
     <h2 class="mybookstitle">My Borrowed Books</h2>
+
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    @if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
     @if($bookIssues->isEmpty())
     <p class="bookspara">You have not borrowed any books.</p>
     @else
@@ -28,7 +33,7 @@
                     @if($bookIssue->issue_status == 'Y')
                     Returned
                     @else
-                    Borrowed
+                    Issued
                     @endif
                 </td>
                 <td>
